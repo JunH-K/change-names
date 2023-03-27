@@ -1,7 +1,7 @@
 # Change JavaScript string, Object properties name.
 
 [![npm](https://img.shields.io/npm/v/change-names)](https://www.npmjs.com/package/change-names)
-[![Downloads](https://img.shields.io/npm/dm/change-names.svg)](http://npm-stat.com/charts.html?package=change-names)
+[![Downloads](https://img.shields.io/npm/dt/change-names)](http://npm-stat.com/charts.html?package=change-names)
 
 Change the object properties or string to camel case, snake case, parscal case.
 
