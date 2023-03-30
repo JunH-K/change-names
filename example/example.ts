@@ -1,3 +1,4 @@
+// @ts-ignore
 import change, { camelCase, snakeCase, pascalCase } from "change-names";
 
 //change string
