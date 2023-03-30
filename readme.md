@@ -71,3 +71,10 @@ change(
 
 ```
 
+## release note
+
+* 0.0.2
+  * publish
+
+* 0.1.0
+  * typescript support
