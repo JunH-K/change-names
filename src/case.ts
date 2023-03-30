@@ -1,4 +1,4 @@
-const checkCase = (str) => {
+const checkCase = (str: string) => {
   if (/^[a-z]+(_[a-z0-9]+)*$/.test(str)) {
     return "snake";
   } else if (/^[a-z]+([A-Z][a-z0-9]*)*$/.test(str)) {
@@ -6,18 +6,18 @@ const checkCase = (str) => {
   } else if (/^[A-Za-z]*([A-Z][A-Za-z0-9]*)*$/.test(str)) {
     return "pascal";
   } else {
-    return new Error("not Found Case");
+    throw new Error(`Invalid case found in string: ${str}`);
   }
 };
 
 //To Pascal
-const camelToPascalCase = (str) => {
+const camelToPascalCase = (str: string) => {
   return str.replace(/^[a-z]/, ($1) => {
     return $1.toUpperCase();
   });
 };
 
-const snakeToPascalCase = (str) => {
+const snakeToPascalCase = (str: string) => {
   return str
     .replace(/^[a-z]/, ($1) => {
       return $1.toUpperCase();
@@ -28,11 +28,11 @@ const snakeToPascalCase = (str) => {
 };
 
 //To Snake
-const camelToSnake = (str) => {
+const camelToSnake = (str: string) => {
   return str.replace(/[A-Z]/g, ($1) => `_${$1.toLowerCase()}`);
 };
 
-const pascalToSnakeCase = (str) => {
+const pascalToSnakeCase = (str: string) => {
   return str
     .replace(/[\w]([A-Z])/g, ($1) => {
       return $1[0] + "_" + $1[1].toLowerCase();
@@ -41,67 +41,47 @@ const pascalToSnakeCase = (str) => {
 };
 
 //To Camel
-const snakeToCamel = (str) => {
+const snakeToCamel = (str: string) => {
   return str.replace(/([-_][a-z])/gi, ($1) =>
     $1.toUpperCase().replace("-", "").replace("_", "")
   );
 };
 
-const pascalToCamel = (str) => {
+const pascalToCamel = (str: string) => {
   return str.replace(/^[A-Z]/, ($1) => {
     return $1.toLowerCase();
   });
 };
 
-const camelCase = (target) => {
+const camelCase = (target: string) => {
   const to = {
     snake: snakeToCamel,
     pascal: pascalToCamel,
   };
 
   const cases = checkCase(target);
-  return to[cases] ? to[cases](target) : target;
+  const toCase = to[cases as keyof typeof to];
+  return toCase ? toCase(target) : target;
 };
 
-const snakeCase = (target) => {
+const snakeCase = (target: string) => {
   const to = {
     camel: camelToSnake,
     pascal: pascalToSnakeCase,
   };
   const cases = checkCase(target);
-  return to[cases] ? to[cases](target) : target;
+  const toCase = to[cases as keyof typeof to];
+  return toCase ? toCase(target) : target;
 };
 
-const pascalCase = (target) => {
+const pascalCase = (target: string) => {
   const to = {
     camel: camelToPascalCase,
     snake: snakeToPascalCase,
   };
   const cases = checkCase(target);
-  return to[cases] ? to[cases](target) : target;
+  const toCase = to[cases as keyof typeof to];
+  return toCase ? toCase(target) : target;
 };
 
-const convert = (obj, caseFunc) => {
-  if (obj !== null && typeof obj === "object") {
-    const newObj = {};
-    for (const [key, value] of Object.entries(obj)) {
-      const newKey = caseFunc(key);
-      newObj[newKey] = convert(value, caseFunc);
-    }
-    return newObj;
-  } else if (Array.isArray(obj)) {
-    return obj.map(convert, caseFunc);
-  }
-  return obj;
-};
-
-const change = (target, caseFunc) => {
-  try {
-    return convert(target, caseFunc);
-  } catch (e) {
-    console.error("error:", e);
-  }
-};
-
-export default change;
 export { snakeCase, camelCase, pascalCase };
