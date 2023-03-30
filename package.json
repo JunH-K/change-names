@@ -2,10 +2,15 @@
   "name": "change-names",
   "version": "0.0.1",
   "description": "Change JavaScript string, Object properties name.",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
-    "build": "webpack --mode=production",
-    "test": "jest --watchAll --verbose"
+    "build": "tsc",
+    "tsc:watch": "tsc --watch",
+    "clean": "tsc --build --clean",
+    "test": "jest --watchAll --verbose",
+    "lint": "eslint src/**/*.ts"
   },
   "keywords": [
     "camelcase",
@@ -25,20 +30,21 @@
     "url": "https://github.com/JunH-K/change-names/issues",
     "email": "k.developer@kakao.com"
   },
-  "files": [
-    "src/index.js"
-  ],
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.21.3",
-    "@babel/plugin-transform-modules-commonjs": "^7.21.2",
     "@babel/plugin-transform-runtime": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
-    "babel-loader": "^9.1.2"
-  },
-  "devDependencies": {
-    "jest": "^29.5.0",
+    "@types/jest": "^29.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "babel-jest": "^29.5.0",
+    "eslint": "^8.37.0",
+    "prettier": "^2.8.7",
+    "terser-webpack-plugin": "^5.3.7",
+    "ts-jest": "^29.0.5",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.2",
     "webpack": "^5.76.3",
-    "webpack-cli": "^5.0.1",
-    "prettier": "^2.8.7"
+    "webpack-cli": "^5.0.1"
   }
 }
