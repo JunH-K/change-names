@@ -1,4 +1,4 @@
-import change, { pascalCase, camelCase, snakeCase } from "./index";
+import change, { pascalCase, camelCase, snakeCase } from "../src";
 
 describe("toSnake", function () {
   test("camel to snake", () => {
