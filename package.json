@@ -1,10 +1,12 @@
 {
   "name": "change-names",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Change JavaScript string, Object properties name.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc",
     "tsc:watch": "tsc --watch",
